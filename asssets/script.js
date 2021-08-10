@@ -54,7 +54,37 @@ var upperArray = [
   "Z",
 ];
 var numsArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-var charArray = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "?"];
+var charArray = [
+  "!",
+  "@",
+  "#",
+  "$",
+  "%",
+  "^",
+  "&",
+  "*",
+  "(",
+  ")",
+  "?",
+  '"',
+  "'",
+  "+",
+  ",",
+  "-",
+  ".",
+  "/",
+  ":",
+  ";",
+  "<",
+  "=",
+  ">",
+  "[",
+  "]",
+  "{",
+  "}",
+  "|",
+  "~",
+];
 
 //The Following four functions return a random position of each respective possible array
 function addLower() {
