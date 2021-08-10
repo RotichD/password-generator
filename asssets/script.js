@@ -56,6 +56,7 @@ var upperArray = [
 var numsArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 var charArray = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "?"];
 
+//The Following four functions return a random position of each respective possible array
 function addLower() {
   var position = Math.floor(Math.random() * lowerArray.length);
   return lowerArray[position];
@@ -67,7 +68,6 @@ function addUpper() {
 }
 
 function addNumeric() {
-
   var position = Math.floor(Math.random() * numsArray.length);
   return numsArray[position];
 }
@@ -78,21 +78,29 @@ function addSpecial() {
 }
 
 function generatePassword() {
-  var totalPossibleCharacters = [];
-  var length = prompt("Enter a number between 8 - 128");
+  var totalPossibleCharacters = []; //Empties array each time new password is generated/new parameters selected
+  var length = document.getElementById("passwordLength").value; //sets password length based on user input
   console.log(length);
   if (length < 8 || length > 128) {
+    //Validation for password length
     alert("Invalid Entry, number must be between 8-128 please try again");
     return;
   }
 
-  var hasLowerCase = confirm("Do you want lowercase characters?");
-  var hasUpperCase = confirm("Do you want uppercase characters?");
-  var hasNumericChar = confirm("Do you want numeric characters?");
-  var hasSpecialChar = confirm("Do you want special characters?");
+  var hasLowerCase = document.getElementById("lowerCheck").checked;
+  var hasUpperCase = document.getElementById("upperCheck").checked;
+  var hasNumericChar = document.getElementById("numCheck").checked;
+  var hasSpecialChar = document.getElementById("specialCharCheck").checked;
+
+  if (!hasLowerCase && !hasUpperCase && !hasNumericChar && !hasSpecialChar) {
+    //ensures at least one option is selected
+    alert("You need to select at least one option");
+    return;
+  }
 
   var passwordString = "";
   var counter = 0;
+  //The following four if statements add at least one random character based on type then add the entire array to total possible characters array
   if (hasLowerCase) {
     passwordString = passwordString + addLower();
     totalPossibleCharacters = totalPossibleCharacters.concat(lowerArray);
@@ -120,7 +128,12 @@ function generatePassword() {
   console.log(totalPossibleCharacters);
 
   for (let i = counter; i < length; i++) {
-    passwordString = passwordString + totalPossibleCharacters[Math.floor(Math.random() * totalPossibleCharacters.length)]
+    //fills in the remaining random characters until it reaches the user's input length
+    passwordString =
+      passwordString +
+      totalPossibleCharacters[
+        Math.floor(Math.random() * totalPossibleCharacters.length)
+      ];
   }
 
   console.log(passwordString);
